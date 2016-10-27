@@ -11,19 +11,39 @@ var TextDisplay = React.createClass({
   }
 });
 
+var ButtonControls = React.createClass({
+
+  render: function(){
+    return (
+      <div>
+        <button onClick={this.props.onGreen}>Green</button>
+        <button onClick={this.props.onBlue}>Blue</button>
+        <button onClick={this.props.onRed}>Red</button>
+      </div>
+    )
+  }
+})
+
 var HelloWorld = React.createClass({
   getInitialState: function () {
-    return {color: 'blue'}
+    return {color: 'black'}
   },
-  changeColor: function(){
-    color = this.state.color == 'blue' ? 'red' : 'blue';
-    this.setState({ color: color });
+  handleGreen: function () {
+    this.setState({color: 'green'});
+    console.log('handle green');
   },
+  handleBlue: function () {
+    this.setState({color: 'blue'});
+  },
+  handleRed: function () {
+    this.setState({color: 'red'});
+  },
+
   render: function () {
     return (
     <div>
       <TextDisplay color={this.state.color} textA={this.props.textA}/>
-      <button onClick={this.changeColor}>Change Color</button>
+      <ButtonControls onRed={this.handleRed} onBlue={this.handleBlue} onGreen={this.handleGreen} />
     </div>
     )
   }
